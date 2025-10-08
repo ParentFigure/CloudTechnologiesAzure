@@ -14,7 +14,7 @@ class User:
             'email': self.email,
             'password': self.password,
             'account_status': self.account_status,
-            'registration_date': self.registration_date
+            'registration_date': str(self.registration_date)
         }
 
 class BlockedFunds:

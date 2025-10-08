@@ -9,7 +9,7 @@ class UserDAO:
         try:
             cursor = current_app.mysql.connection.cursor()
             cursor.execute("SELECT * FROM User")
-            users = [dict(zip([col[0] for col in cursor.description], row)) for row in cursor.fetchall()]
+            users = [User(row[0],row[1],row[2],row[3],row[4],row[5]) for row in cursor.fetchall()]
         except Exception as e:
             print(f"Error fetching users: {e}")
             users = []
@@ -23,6 +23,7 @@ class UserDAO:
             cursor = current_app.mysql.connection.cursor()
             cursor.execute("SELECT * FROM User WHERE user_id = %s", (user_id,))
             row = cursor.fetchone()
+            row=User(row[0],row[1],row[2],row[3],row[4],row[5])
         except Exception as e:
             print(f"Error fetching user: {e}")
             row = None
